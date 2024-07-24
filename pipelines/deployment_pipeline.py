@@ -48,13 +48,13 @@ def dynamic_importer() -> str:
 def deployment_trigger(accuracy: float, config: DeploymentTriggerConfig):
     return accuracy >= config.min_accuracy
 
-@step(enable_cache=False)
+@step(enable_cache=True)
 def prediction_service_loader(
     pipeline_name: str,
     pipeline_step_name: str,
     running: bool = True,
     model_name: str = "model",
-) -> MLFlowModelDeployer:
+) -> BaseService:
     """Get the prediction service started by the deployment pipeline.
 
     Args:
@@ -126,7 +126,7 @@ def continuous_deployment_pipeline(
     timeout: int = DEFAULT_SERVICE_START_STOP_TIMEOUT
 ):
 
-    df = ingest_data(data_path = r"C:\Users\baris\OneDrive\Masaüstü\Personal\MLOps\MLOps_Project_Own\data\olist_customers_dataset.csv")
+    df = ingest_data(data_path = r"/home/bener/MLOPS_Study/data/olist_customers_dataset.csv")
     X_tr, X_te, y_tr, y_te = clean_data(df)
     model = train_model(X_tr, y_tr)
     mse, r2, rmse = evaluate_model(model, X_te, y_te)
@@ -142,7 +142,7 @@ def inference_pipeline(pipeline_name: str, pipeline_step_name: str):
     model_deployment_service = prediction_service_loader(
         pipeline_name=pipeline_name,
         pipeline_step_name=pipeline_step_name,
-        running=False,
+        running=False
     )
     predictor(service=model_deployment_service, data=batch_data)
 
