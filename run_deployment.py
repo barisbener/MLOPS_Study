@@ -1,7 +1,6 @@
 
 from typing import cast
 
-from sklearn.metrics import PredictionErrorDisplay
 from traitlets import default
 from pipelines.deployment_pipeline import continuous_deployment_pipeline, inference_pipeline
 import click
