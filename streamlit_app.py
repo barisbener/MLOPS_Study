@@ -65,7 +65,7 @@ def main():
         service = prediction_service_loader(
         pipeline_name="continuous_deployment_pipeline",
         pipeline_step_name="mlflow_model_deployer_step",
-        running=True,
+        running=False,
         )
         if service is None:
             st.write(
