@@ -48,7 +48,7 @@ def dynamic_importer() -> str:
 def deployment_trigger(accuracy: float, config: DeploymentTriggerConfig):
     return accuracy >= config.min_accuracy
 
-@step(enable_cache=True)
+@step(enable_cache=False)
 def prediction_service_loader(
     pipeline_name: str,
     pipeline_step_name: str,
