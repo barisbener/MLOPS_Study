@@ -11,10 +11,10 @@ from run_deployment import run_deployment
 def main():
     st.title("End to End Customer Satisfaction Pipeline with ZenML")
 
-    high_level_image = Image.open("_assets/high_level_overview.png")
+    high_level_image = Image.open("/home/bener/MLOPS_Study/_assets/high_level_overview.png")
     st.image(high_level_image, caption="High Level Pipeline")
 
-    whole_pipeline_image = Image.open("_assets/training_and_deployment_pipeline_updated.png")
+    whole_pipeline_image = Image.open("/home/bener/MLOPS_Study/_assets/training_and_deployment_pipeline_updated.png")
 
     st.markdown(
         """ 
@@ -65,7 +65,7 @@ def main():
         service = prediction_service_loader(
         pipeline_name="continuous_deployment_pipeline",
         pipeline_step_name="mlflow_model_deployer_step",
-        running=False,
+        running=True,
         )
         if service is None:
             st.write(
@@ -97,7 +97,7 @@ def main():
                 pred
             )
         )
-    """
+    
     if st.button("Results"):
         st.write(
             "We have experimented with two ensemble and tree based models and compared the performance of each model. The results are as follows:"
@@ -115,9 +115,9 @@ def main():
         st.write(
             "Following figure shows how important each feature is in the model that contributes to the target variable or contributes in predicting customer satisfaction rate."
         )
-        image = Image.open("_assets/feature_importance_gain.png")
+        image = Image.open("/home/bener/MLOPS_Study/_assets/feature_importance_gain.png")
         st.image(image, caption="Feature Importance Gain")
-    """
+    
 
 if __name__ == "__main__":
     main()
