@@ -54,7 +54,7 @@ def prediction_service_loader(
     pipeline_step_name: str,
     running: bool = True,
     model_name: str = "model",
-) -> BaseService:
+) -> MLFlowModelDeployer:
     """Get the prediction service started by the deployment pipeline.
 
     Args:

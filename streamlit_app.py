@@ -4,11 +4,18 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 from PIL import Image
-from pipelines.deployment_pipeline import prediction_service_loader
+from pipelines.deployment_pipeline import prediction_service_loader, predictor
 from run_deployment import run_deployment
 
 
 def main():
+
+    service = prediction_service_loader(
+    pipeline_name="continuous_deployment_pipeline",
+    pipeline_step_name="mlflow_model_deployer_step",
+    running=True,
+    )
+
     st.title("End to End Customer Satisfaction Pipeline with ZenML")
 
     high_level_image = Image.open("/home/bener/MLOPS_Study/_assets/high_level_overview.png")
@@ -62,16 +69,13 @@ def main():
     product_width_cm = st.number_input("Product width (CMs)")
 
     if st.button("Predict"):
-        service = prediction_service_loader(
-        pipeline_name="continuous_deployment_pipeline",
-        pipeline_step_name="mlflow_model_deployer_step",
-        running=True,
-        )
         if service is None:
             st.write(
                 "No service could be found. The pipeline will be run first to create a service."
             )
-            run_deployment()
+            run_deployment()         
+
+            
 
         df = pd.DataFrame(
             {
@@ -91,7 +95,7 @@ def main():
         )
         json_list = json.loads(json.dumps(list(df.T.to_dict().values())))
         data = np.array(json_list)
-        pred = service.predict(data)
+        pred = predictor(service, data)
         st.success(
             "Your Customer Satisfactory rate(range between 0 - 5) with given product details is :-{}".format(
                 pred
