@@ -35,7 +35,7 @@ DEPLOY_AND_PREDICT = "deploy_and_predict"
     help="Minimum accuracy required to deploy the model",
 )
 
-def run_deployment(config: str, min_accuracy: float):
+def run_deployment(config: str, min_accuracy: float) -> str | None:
     mlflow_model_deployer_component = MLFlowModelDeployer.get_active_model_deployer()
     deploy = config == DEPLOY or config == DEPLOY_AND_PREDICT
     predict = config == PREDICT or config == DEPLOY_AND_PREDICT
@@ -95,5 +95,6 @@ def run_deployment(config: str, min_accuracy: float):
             "the same command with the `--deploy` argument to deploy a model."
         )
 
+    return service.prediction_url
 
-run_deployment()
+
