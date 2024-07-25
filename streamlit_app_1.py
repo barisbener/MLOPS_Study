@@ -10,7 +10,10 @@ import pandas as pd
 def predict(input_data,):
     url = "http://127.0.0.1:8000/invocations"
     headers = {"Content-Type": "application/json"}
-    response = requests.post(url, headers=headers, data=json.dumps(input_data))
+
+    payload = {"instances": [input_data]}
+
+    response = requests.post(url, headers=headers, data=json.dumps(payload))
     if response.status_code == 200:
         return response.json()
     else:
