@@ -4,11 +4,11 @@ import json
 
 import pandas as pd
 
-from run_deployment import run_deployment
 
 
 # Function to call the deployed model's prediction endpoint
-def predict(input_data, url):
+def predict(input_data,):
+    url = "http://127.0.0.1:8000/invocations"
     headers = {"Content-Type": "application/json"}
     response = requests.post(url, headers=headers, data=json.dumps(input_data))
     if response.status_code == 200:
@@ -19,7 +19,6 @@ def predict(input_data, url):
 
 
 
-url = run_deployment()
 
 st.title("End to End Customer Satisfaction Pipeline with ZenML")
 
@@ -54,7 +53,7 @@ df = pd.DataFrame(
 )
 
 if st.button("Predict"):
-    prediction = predict(df, url)
+    prediction = predict(df)
 
     if "error" in prediction:
         st.error(f"Error: {prediction['error']}")
