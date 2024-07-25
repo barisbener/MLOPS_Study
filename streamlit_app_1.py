@@ -22,38 +22,28 @@ def predict(input_data,):
 
 st.title("End to End Customer Satisfaction Pipeline with ZenML")
 
-payment_sequential = st.sidebar.slider("Payment Sequential")
-payment_installments = st.sidebar.slider("Payment Installments")
-payment_value = st.number_input("Payment Value")
-price = st.number_input("Price")
-freight_value = st.number_input("freight_value")
-product_name_length = st.number_input("Product name length")
-product_description_length = st.number_input("Product Description length")
-product_photos_qty = st.number_input("Product photos Quantity ")
-product_weight_g = st.number_input("Product weight measured in grams")
-product_length_cm = st.number_input("Product length (CMs)")
-product_height_cm = st.number_input("Product height (CMs)")
-product_width_cm = st.number_input("Product width (CMs)")
 
-df = pd.DataFrame(
-            {
-                "payment_sequential": [payment_sequential],
-                "payment_installments": [payment_installments],
-                "payment_value": [payment_value],
-                "price": [price],
-                "freight_value": [freight_value],
-                "product_name_lenght": [product_name_length],
-                "product_description_lenght": [product_description_length],
-                "product_photos_qty": [product_photos_qty],
-                "product_weight_g": [product_weight_g],
-                "product_length_cm": [product_length_cm],
-                "product_height_cm": [product_height_cm],
-                "product_width_cm": [product_width_cm],
-            }
-)
+input_data = {}
+input_data["payment_sequential"] = st.text_input("payment_sequential")
+input_data["payment_installments"] = st.text_input("payment_installments")
+input_data["payment_value"] = st.text_input("payment_value")
+input_data["price"] = st.text_input("price")
+input_data["freight_value"] = st.text_input("freight_value")
+input_data["product_name_length"] = st.text_input("product_name_length")
+input_data["product_description_length"] = st.text_input("product_description_length")
+input_data["product_photos_qty"] = st.text_input("product_photos_qty")
+input_data["product_weight_g"] = st.text_input("product_weight_g")
+input_data["product_length_cm"] = st.text_input("product_length_cm")
+input_data["product_height_cm"] = st.text_input("product_height_cm")
+input_data["product_width_cm"] = st.text_input("product_width_cm")
+
+
+
 
 if st.button("Predict"):
-    prediction = predict(df)
+
+    input_dict = {key: [value] for key, value in input_data.items()}
+    prediction = predict(input_dict)
 
     if "error" in prediction:
         st.error(f"Error: {prediction['error']}")
