@@ -27,18 +27,18 @@ st.title("End to End Customer Satisfaction Pipeline with ZenML")
 
 
 input_data = {}
-input_data["payment_sequential"] = st.text_input("payment_sequential")
-input_data["payment_installments"] = st.text_input("payment_installments")
-input_data["payment_value"] = st.text_input("payment_value")
-input_data["price"] = st.text_input("price")
-input_data["freight_value"] = st.text_input("freight_value")
-input_data["product_name_length"] = st.text_input("product_name_length")
-input_data["product_description_length"] = st.text_input("product_description_length")
-input_data["product_photos_qty"] = st.text_input("product_photos_qty")
-input_data["product_weight_g"] = st.text_input("product_weight_g")
-input_data["product_length_cm"] = st.text_input("product_length_cm")
-input_data["product_height_cm"] = st.text_input("product_height_cm")
-input_data["product_width_cm"] = st.text_input("product_width_cm")
+input_data["payment_sequential"] = st.number_input("payment_sequential")
+input_data["payment_installments"] = st.number_input("payment_installments")
+input_data["payment_value"] = st.number_input("payment_value")
+input_data["price"] = st.number_input("price")
+input_data["freight_value"] = st.number_input("freight_value")
+input_data["product_name_length"] = st.number_input("product_name_length")
+input_data["product_description_length"] = st.number_input("product_description_length")
+input_data["product_photos_qty"] = st.number_input("product_photos_qty")
+input_data["product_weight_g"] = st.number_input("product_weight_g")
+input_data["product_length_cm"] = st.number_input("product_length_cm")
+input_data["product_height_cm"] = st.number_input("product_height_cm")
+input_data["product_width_cm"] = st.number_input("product_width_cm")
 
 
 
