@@ -71,7 +71,7 @@ def main():
             st.write(
                 "No service could be found. The pipeline will be run first to create a service."
             )
-            main()
+            run_deployment()
 
         df = pd.DataFrame(
             {
