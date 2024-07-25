@@ -27,7 +27,7 @@ st.title("End to End Customer Satisfaction Pipeline with ZenML")
 
 
 input_data = {}
-input_data["payment_sequential"] = st.sidebar.slider("Payment Sequential")
+input_data["payment_sequential"] = int(st.sidebar.slider("Payment Sequential"))
 input_data["payment_installments"] = st.sidebar.slider("Payment Installments")
 input_data["payment_value"] = st.number_input("payment_value")
 input_data["price"] = st.number_input("price")
